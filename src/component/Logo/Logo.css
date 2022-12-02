@@ -1,0 +1,24 @@
+.logo{
+    width: 10rem;
+    height: 10rem;
+    margin: 2%;
+    display: flex;
+}
+.tilt__component{
+    background: #085078;
+    background: -webkit-linear-gradient(to right, #85D8CE, #085078);
+    background: linear-gradient(to right, #85D8CE, #085078);
+    border-radius: 1rem;
+    box-shadow: 0.2rem 0.4rem 0.4rem #006ba5;
+}
+.tilt__component:hover{
+    box-shadow: 0.4rem 0.8rem 0.8rem #006ba5;
+    transition: 0.3s;
+}
+.logo__img{
+    width: 80%;
+    height: 80%;
+    margin: 10%;
+    border-radius: 2rem;
+    border: none;
+}

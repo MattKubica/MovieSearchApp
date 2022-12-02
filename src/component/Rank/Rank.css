@@ -1,0 +1,19 @@
+.rankText__name>p{
+    font-size: medium;
+    color: white;
+    
+}
+.rankText__text__holder>p{
+    font-size: x-large;
+    height: auto;
+    width: auto;
+    font-weight: 500;
+    color: white;
+    margin: none;
+}
+.rankFrame{
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    width: auto;
+}

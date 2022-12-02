@@ -1,0 +1,14 @@
+.navigation{
+    display: flex;
+    justify-content: flex-end;
+    margin: 1%
+}
+.navigation>p:hover{
+    text-shadow: 4% 4% 4%;
+    transition: 0.3s;
+    cursor: pointer;
+    color: grey;
+}
+.navigation>p{
+    font-size: medium;
+}

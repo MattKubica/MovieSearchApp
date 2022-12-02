@@ -1,0 +1,48 @@
+.faceRecognition__text{
+    font-size: large;
+}
+.faceRecognition__form__container{
+    display: flex;
+    padding: 1%;
+    border-radius: 1rem;
+
+}
+.faceRecognition__form{
+    display: flex;
+    justify-content: center;
+}
+
+.faceRecognition__input{
+    justify-content: center;
+    align-items: center;
+    width: 70%;
+    padding: 1%;
+    font-size: large;
+    border: none;
+    box-shadow: 0.1rem 0.1rem 0.1rem #006ba5;;
+    border-radius: 1rem 0rem 0rem 1rem;
+    text-align: center;
+    transition: 0.5s;
+}
+.faceRecognition__input:hover, .faceRecognition__button:hover{
+    box-shadow: 0.4rem 0.8rem 0.8rem #006ba5;
+    transition: 1.5s;
+}
+.faceRecognition__input:focus, .faceRecognition__input:hover{ 
+background-color: black;
+border: none;
+color: white;
+transition: 1.5s;
+}
+.faceRecognition__button{
+    width: 30%;
+    transition: 0.5s;
+    border-radius: 0rem 1rem 1rem 0rem;
+    border: none;
+    box-shadow: 0.2rem 0.2rem 0.2rem #006ba5;;
+}
+.faceRecognition__button:hover{
+    color: white;
+    background-color: black;
+    cursor: pointer;
+}
