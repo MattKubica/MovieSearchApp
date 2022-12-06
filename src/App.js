@@ -7,8 +7,7 @@ import Rank from "./component/Rank/Rank";
 import Particle from "./component/Particle";
 import ListOfCards from "./component/ListOfCards/ListOfCards";
 
-function App({ list }) {
-  const [ListMovies, setListMovies] = useState([{ list }]);
+function App() {
   return (
     <div className="App">
       <Particle />
@@ -22,9 +21,11 @@ function App({ list }) {
       <div className="App__bot">
         <FaceRecognition />
       </div>
-      <div className="App__bot__showfield">
-        <ListOfCards />
-      </div>
+      {
+        <div className="App__bot__showfield">
+          <ListOfCards />
+        </div>
+      }
     </div>
   );
 }
