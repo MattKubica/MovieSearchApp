@@ -7,11 +7,11 @@ const ListOfCards = () => {
     <div className="ListOfCards">
       <Card
         movie={{
-          title: "Pirates",
+          title: "Shreck",
           image:
-            "https://media.istockphoto.com/id/825383494/photo/business-man-pushing-large-stone-up-to-hill-business-heavy-tasks-and-problems-concept.jpg?s=612x612&w=0&k=20&c=wtqvbQ6OIHitRVDPTtoT_1HKUAOgyqa7YzzTMXqGRaQ=",
+            "https://th.bing.com/th/id/OIP.PKm5cO-hIz8mxFHrJ3zIWwHaGj?pid=ImgDet&rs=1",
           stat1: "stat",
-          stat2: "picovina",
+          stat2: "stat",
         }}
       />
     </div>

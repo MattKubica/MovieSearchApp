@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import "./FaceRecognition.css";
+import { useContext } from "react";
+import MovieContext from "../../MovieContext";
 
 function FaceRecognition() {
   const [InputValue, setInputValue] = useState("");
+  const addToRotation = useContext(MovieContext);
   let NAME_OF_MOVIE = InputValue;
   const options = {
     method: "GET",
@@ -11,7 +14,8 @@ function FaceRecognition() {
       "X-RapidAPI-Host": "online-movie-database.p.rapidapi.com",
     },
   };
-  function ListData() {
+  const handleSubmit = (e) => {
+    e.preventDefault();
     fetch(
       "https://online-movie-database.p.rapidapi.com/auto-complete?q=" +
         NAME_OF_MOVIE,
@@ -20,14 +24,11 @@ function FaceRecognition() {
       .then((response) => response.json())
       .then((data) => {
         const list = data.d;
-        //console.log(list);
+        console.log("list", list);
+        console.log("image", list[0].i.imageUrl);
       })
-
+      .then((list) => addToRotation())
       .catch((err) => console.error(err));
-  }
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    ListData();
     console.log("submited", { NAME_OF_MOVIE });
     e.target.reset();
     NAME_OF_MOVIE = "";
@@ -58,3 +59,5 @@ function FaceRecognition() {
   );
 }
 export default FaceRecognition;
+//https://stackoverflow.com/questions/67274921/resolve-a-promise-perform-an-asynchronous-operation-inside-of-map
+//https://www.youtube.com/watch?v=3yrMcx02jXs
