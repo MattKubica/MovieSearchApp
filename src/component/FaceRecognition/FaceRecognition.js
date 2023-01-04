@@ -6,6 +6,7 @@ import MovieContext from "../../MovieContext";
 function FaceRecognition() {
   const [InputValue, setInputValue] = useState("");
   const addToRotation = useContext(MovieContext);
+  const movieList = useContext(MovieContext);
   let NAME_OF_MOVIE = InputValue;
   const options = {
     method: "GET",
@@ -27,7 +28,7 @@ function FaceRecognition() {
         console.log("list", list);
         console.log("image", list[0].i.imageUrl);
       })
-      .then((list) => addToRotation())
+      .then(() => addToRotation)
       .catch((err) => console.error(err));
     console.log("submited", { NAME_OF_MOVIE });
     e.target.reset();
