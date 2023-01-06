@@ -1,12 +1,12 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./FaceRecognition.css";
 import { useContext } from "react";
 import MovieContext from "../../MovieContext";
 
 function FaceRecognition() {
   const [InputValue, setInputValue] = useState("");
-  const addToRotation = useContext(MovieContext);
-  const movieList = useContext(MovieContext);
+  const { addToRotation } = useContext(MovieContext);
+  const { movieList } = useContext(MovieContext);
   let NAME_OF_MOVIE = InputValue;
   const options = {
     method: "GET",
@@ -25,10 +25,10 @@ function FaceRecognition() {
       .then((response) => response.json())
       .then((data) => {
         const list = data.d;
-        console.log("list", list);
-        console.log("image", list[0].i.imageUrl);
+        addToRotation(list);
+        //console.log("list", list);
+        //console.log("image", list[0].i.imageUrl);
       })
-      .then(() => addToRotation)
       .catch((err) => console.error(err));
     console.log("submited", { NAME_OF_MOVIE });
     e.target.reset();
