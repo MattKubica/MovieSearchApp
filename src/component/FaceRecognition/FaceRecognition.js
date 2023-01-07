@@ -60,5 +60,3 @@ function FaceRecognition() {
   );
 }
 export default FaceRecognition;
-//https://stackoverflow.com/questions/67274921/resolve-a-promise-perform-an-asynchronous-operation-inside-of-map
-//https://www.youtube.com/watch?v=3yrMcx02jXs

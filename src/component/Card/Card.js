@@ -11,9 +11,8 @@ function Card({ movie }) {
         backgroundSize: "cover",
       }}>
       <div className="Card__info">
-        <h1>{movie.title}</h1>
-        <p>{movie.stat1}</p>
-        <p>{movie.stat2}</p>
+        <h1 className="Card__info__text">{movie.title}</h1>
+        <p className="Card__info__text">{movie.stat1}</p>
       </div>
     </div>
   );

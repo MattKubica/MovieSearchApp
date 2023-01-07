@@ -1,12 +1,12 @@
 import { createContext, useState } from "react";
 
-const MovieContext = createContext({});
+const MovieContext = createContext();
 
 export function MovieProvider({ children }) {
   const [movieList, setMovieList] = useState([]);
 
-  const addToRotation = (movie) => {
-    setMovieList((prevState) => [...prevState, { movie }]);
+  const addToRotation = (list) => {
+    setMovieList(list);
     console.log("rotation in state", movieList);
   };
   return (
