@@ -40,10 +40,10 @@ const ListOfCards = (i) => {
             return (
               <div className="ListOfCards">
                 <Card
-                  key={movie.l + i}
+                  key={movie.l + i + Math.random()}
                   movie={{
                     image:
-                      "https://images.unsplash.com/photo-1618022325802-7e5e732d97a1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1yZWxhdGVkfDE1fHx8ZW58MHx8fHw%3D&w=1000&q=80",
+                      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQFtVT2d3MCqNqhLZl-ZKys7J1Am1GuduiGDA&usqp=CAU",
                     stat1: movie.s,
                     title: movie.l,
                   }}
@@ -67,3 +67,4 @@ export default ListOfCards;
           stat2: "stat",
         }}
       /> */
+//`https://www.youtube.com/results?search_query=${movie.title}+triler`
