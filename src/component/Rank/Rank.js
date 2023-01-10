@@ -1,11 +1,11 @@
 import React from "react";
 import "./Rank.css";
 import FaceRecognition from "../FaceRecognition/FaceRecognition";
-function Rank({ NAME_OF_MOVIE }) {
+function Rank() {
   return (
     <div className="rankFrame">
       <div className="rankText__name">
-        <p>Your last search was: </p>
+        <p># Results of your search: </p>
       </div>
       <div className="rankText__text__holder">
         <p> Movie</p>
