@@ -5,7 +5,7 @@ function Rank() {
   return (
     <div className="rankFrame">
       <div className="rankText__name">
-        <p># Results of your search: </p>
+        <p>Search for movie info:</p>
       </div>
       <div className="rankText__text__holder">
         <p> Movie</p>

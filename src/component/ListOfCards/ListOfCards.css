@@ -3,7 +3,7 @@
     display: flex;
     flex-wrap: wrap;
     margin: auto;
-    flex-direction: row;
+    flex-direction: auto;
     justify-content: center;
     align-items: center;
 }

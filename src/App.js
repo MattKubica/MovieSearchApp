@@ -1,5 +1,4 @@
 import "./App.css";
-import Navigation from "./component/Navigation/Navigation";
 import Logo from "./component/Logo/Logo";
 import FaceRecognition from "./component/FaceRecognition/FaceRecognition";
 import Rank from "./component/Rank/Rank";
@@ -14,9 +13,7 @@ class App extends Component {
       <div className="App">
         <MovieProvider>
           <Particle />
-          <div className="App__top">
-            <Navigation />
-          </div>
+          <div className="App__top"></div>
           <div className="App__center">
             <Logo />
             <Rank />
