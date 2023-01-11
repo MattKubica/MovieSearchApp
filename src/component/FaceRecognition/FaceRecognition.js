@@ -51,7 +51,7 @@ function FaceRecognition() {
               className="faceRecognition__button"
               type="submit"
               title="Detect">
-              Detect
+              Search
             </button>
           </div>
         </form>
