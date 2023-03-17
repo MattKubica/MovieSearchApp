@@ -12,36 +12,14 @@ import Navigation from "./component/FaceRecognition/Navigation";
 
 function App() {
   const [RouteStatus, setRouteStatus] = useState();
-  const [IsSignedIn, setIsSignedIn] = useState(Boolean);
-  const [profile, setProfile] = useState({
-    user: {
-      id: "",
-      name: "",
-      email: "",
-      password: "",
-      enteries: 0,
-      joined: "",
-    },
-  });
+  const [IsSignedIn, setIsSignedIn] = useState(false);
+
   useEffect(() => {
     fetch("http://localhost:3001").then((response) =>
       response.json().then((data) => console.log(data))
     );
   });
 
-  function loadUser(data) {
-    const user = {};
-    setProfile({
-      user: {
-        id: data.id,
-        name: data.name,
-        email: data.email,
-        password: data.password,
-        enteries: data.enteries++,
-        joined: data.joined,
-      },
-    });
-  }
   var onRouteChange = (route) => {
     setRouteStatus(route);
     if (RouteStatus === "home") {
@@ -79,10 +57,7 @@ function App() {
         ) : RouteStatus === "signin" ? (
           <SignIn onRouteChange={onRouteChange} />
         ) : (
-          <Register
-            loadUser={loadUser}
-            onRouteChange={onRouteChange}
-          />
+          <Register onRouteChange={onRouteChange} />
         )}
       </MovieProvider>
     </div>

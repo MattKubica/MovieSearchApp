@@ -1,6 +1,5 @@
 .rankText__name>p{
-    font-size: medium;
-    color: white;
+    font-size: large;
     
 }
 .rankText__text__holder>p{
@@ -17,3 +16,30 @@
     display: flex;
     width: auto;
 }
+.heroic-text {
+    background: linear-gradient(45deg, #2600ff, #83efed, #2af7d5, #bd4cea, #00032c);
+    background-size: 150%;
+    animation: gradient 2.5s ease infinite;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  
+  [heroic]:before {
+    position: absolute;
+    background: linear-gradient(45deg, #2600ff, #83efed, #2af7d5, #bd4cea, #00032c);
+    background-size: 150%;
+    animation: gradient 2.5s ease infinite;
+    content: attr(heroic);
+    filter: blur(25px);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  @keyframes gradient {
+    0%,
+    to {
+      background-position: 0 50%
+    }
+    50% {
+      background-position: 100% 50%
+    }
+  }
