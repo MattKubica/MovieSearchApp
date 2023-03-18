@@ -3,14 +3,7 @@ import "../SignIn/SignIn.css";
 function SignIn({ onRouteChange }) {
   const [signInEmail, setSignInEmail] = useState();
   const [signInPassword, setSignInPassword] = useState();
-  const onEmailChange = (event) => {
-    setSignInEmail = event.target.value;
-  };
-  const onPasswordChange = (event) => {
-    setSignInPassword = event.target.value;
-  };
   function onSubmitSignIn() {
-    // console.log("submited successfully", signInEmail, signInPassword);
     fetch("http://localhost:3001/signin", {
       method: "post",
       headers: { "Content-Type": "application/json" },
@@ -19,20 +12,27 @@ function SignIn({ onRouteChange }) {
         password: signInPassword,
       }),
     })
-      .then((response) => response.json())
-      .then((data) => {
-        if (data === "success") {
-          onRouteChange("home");
+      .then((response) => {
+        if (response.status === 400) {
+          throw new Error("Invalid email or password");
         }
+        return response.json();
+      })
+      .then((data) => {
+        onRouteChange("home");
+      })
+      .catch((error) => {
+        console.error(error);
       });
   }
+
   return (
     <div className="login-box">
       <h2>Login</h2>
       <form onSubmit={onSubmitSignIn}>
         <div className="user-box">
           <input
-            type="text"
+            type="e-mail"
             name
             required
             onChange={(event) => setSignInEmail(event.target.value)}
@@ -41,7 +41,7 @@ function SignIn({ onRouteChange }) {
         </div>
         <div className="user-box">
           <input
-            type="text"
+            type="password"
             name
             required
             onChange={(event) => setSignInPassword(event.target.value)}
@@ -51,10 +51,7 @@ function SignIn({ onRouteChange }) {
         <div>
           <a
             href="#"
-            onClick={
-              (event) => onSubmitSignIn()
-              //() => onRouteChange("home")
-            }>
+            onClick={(event) => onSubmitSignIn()}>
             <span />
             <span />
             <span />

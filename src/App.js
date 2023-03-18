@@ -13,23 +13,27 @@ import Navigation from "./component/FaceRecognition/Navigation";
 function App() {
   const [RouteStatus, setRouteStatus] = useState();
   const [IsSignedIn, setIsSignedIn] = useState(false);
-
-  useEffect(() => {
+  // ========>>>> Console log for login data of current registered users <<<<======
+  /* useEffect(() => {
     fetch("http://localhost:3001").then((response) =>
       response.json().then((data) => console.log(data))
     );
   });
+  */
 
   var onRouteChange = (route) => {
     setRouteStatus(route);
-    if (RouteStatus === "home") {
+    if (route === "home") {
       setIsSignedIn(true);
-      console.log("status" + IsSignedIn);
     } else {
       setIsSignedIn(false);
-      console.log("status" + IsSignedIn);
     }
   };
+  //console log for status of login
+  /*useEffect(() => {
+    console.log("status: " + IsSignedIn);
+  }, [IsSignedIn]);
+  */
   return (
     <div className="App">
       <MovieProvider>
