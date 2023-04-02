@@ -23,6 +23,8 @@ function SignIn({ onRouteChange }) {
       })
       .catch((error) => {
         console.error(error);
+        setSignInEmail(" ");
+        setSignInPassword(" ");
       });
   }
 
