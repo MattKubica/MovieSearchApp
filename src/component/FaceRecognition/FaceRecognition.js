@@ -1,12 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import "./FaceRecognition.css";
-import { useContext } from "react";
 import MovieContext from "../../MovieContext";
 
 function FaceRecognition() {
   const [InputValue, setInputValue] = useState("");
-  const { addToRotation } = useContext(MovieContext);
-  const { movieList } = useContext(MovieContext);
+  const { addToRotation, profile } = useContext(MovieContext);
   let NAME_OF_MOVIE = InputValue;
   const options = {
     method: "GET",
@@ -26,8 +24,6 @@ function FaceRecognition() {
       .then((data) => {
         const list = data.d;
         addToRotation(list);
-        //console.log("list", list);
-        //console.log("image", list[0].i.imageUrl);
       })
       .catch((err) => console.error(err));
     console.log("submited", { NAME_OF_MOVIE });
@@ -37,7 +33,7 @@ function FaceRecognition() {
   return (
     <div className="faceRecognition">
       <p className="faceRecognition__text">
-        {"What movie you would like to know about ?"}
+        {profile.user.name}, what movie you would like to know about ?
       </p>
       <div className="faceRecognition__form">
         <form onSubmit={handleSubmit}>
@@ -59,4 +55,5 @@ function FaceRecognition() {
     </div>
   );
 }
+
 export default FaceRecognition;

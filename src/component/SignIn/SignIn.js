@@ -1,9 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import "../SignIn/SignIn.css";
+import MovieContext from "../../MovieContext";
+
 function SignIn({ onRouteChange }) {
-  const [signInEmail, setSignInEmail] = useState();
-  const [signInPassword, setSignInPassword] = useState();
-  function onSubmitSignIn() {
+  const [signInEmail, setSignInEmail] = useState("");
+  const [signInPassword, setSignInPassword] = useState("");
+  const [error, setError] = useState("");
+  const { loadUser } = useContext(MovieContext);
+
+  function onSubmitSignIn(event) {
+    event.preventDefault();
+
     fetch("http://localhost:3001/signin", {
       method: "post",
       headers: { "Content-Type": "application/json" },
@@ -19,12 +26,17 @@ function SignIn({ onRouteChange }) {
         return response.json();
       })
       .then((data) => {
+        // Update profile state with user data
+        const { name, email } = data;
+        loadUser({ name, email });
+
+        // Change route to home
         onRouteChange("home");
       })
       .catch((error) => {
-        console.error(error);
-        setSignInEmail(" ");
-        setSignInPassword(" ");
+        setError(error.message);
+        setSignInEmail("");
+        setSignInPassword("");
       });
   }
 
@@ -34,8 +46,9 @@ function SignIn({ onRouteChange }) {
       <form onSubmit={onSubmitSignIn}>
         <div className="user-box">
           <input
-            type="e-mail"
-            name
+            type="email"
+            name="email"
+            value={signInEmail}
             required
             onChange={(event) => setSignInEmail(event.target.value)}
           />
@@ -44,32 +57,22 @@ function SignIn({ onRouteChange }) {
         <div className="user-box">
           <input
             type="password"
-            name
+            name="password"
+            value={signInPassword}
             required
             onChange={(event) => setSignInPassword(event.target.value)}
           />
           <label>Password</label>
         </div>
         <div>
-          <a
-            href="#"
-            onClick={(event) => onSubmitSignIn()}>
-            <span />
-            <span />
-            <span />
-            <span />
-            Submit
-          </a>
+          <button type="submit">Submit</button>
           <br />
-          <a
+          <button
             href="#"
             onClick={() => onRouteChange("register")}>
-            <span />
-            <span />
-            <span />
-            <span />
             Register
-          </a>
+          </button>
+          {error && <p className="heroic-text">{error}</p>}
         </div>
       </form>
     </div>
