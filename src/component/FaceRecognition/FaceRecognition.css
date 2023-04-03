@@ -1,5 +1,6 @@
-.faceRecognition__text{
+.faceRecognition__text {
     font-size: large;
+    color: white;
 }
 .faceRecognition__form__container{
     display: flex;

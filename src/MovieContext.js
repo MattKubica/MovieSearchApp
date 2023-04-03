@@ -24,7 +24,7 @@ export function MovieProvider({ children }) {
       joined: data.joined,
     };
     setProfile({ user });
-    console.log("current user in Context is :" + user.name);
+    //console.log("current user in Context is :" + user.name);
   };
 
   const addToRotation = (list) => {
