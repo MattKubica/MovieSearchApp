@@ -20,6 +20,7 @@
     background: linear-gradient(45deg, #2600ff, #83efed, #2af7d5, #bd4cea, #00032c);
     background-size: 150%;
     animation: gradient 2.5s ease infinite;
+    -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
   
@@ -30,6 +31,7 @@
     animation: gradient 2.5s ease infinite;
     content: attr(heroic);
     filter: blur(25px);
+    -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
   @keyframes gradient {
