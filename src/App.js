@@ -4,35 +4,39 @@ import FaceRecognition from "./component/FaceRecognition/FaceRecognition";
 import Rank from "./component/Rank/Rank";
 import Particle from "./component/Particle";
 import ListOfCards from "./component/ListOfCards/ListOfCards";
-import { Component, useEffect, useState, useContext } from "react";
+import { useEffect, useState } from "react";
 import { MovieProvider } from "./MovieContext";
 import SignIn from "./component/SignIn/SignIn";
 import Register from "./component/SignIn/Register";
 import Navigation from "./component/FaceRecognition/Navigation";
 
 function App() {
-  const [RouteStatus, setRouteStatus] = useState();
-  const [IsSignedIn, setIsSignedIn] = useState(false);
+  const [routeStatus, setRouteStatus] = useState("signin");
+  const [isSignedIn, setIsSignedIn] = useState(false);
 
-  var onRouteChange = (route) => {
-    setRouteStatus(route);
-    if (route === "home") {
+  useEffect(() => {
+    if (routeStatus === "home") {
       setIsSignedIn(true);
     } else {
       setIsSignedIn(false);
     }
+  }, [routeStatus]);
+
+  const onRouteChange = (route) => {
+    setRouteStatus(route);
   };
+
   return (
     <div className="App">
       <MovieProvider>
         <Particle />
         <div className="App__end">
           <Navigation
-            isSignedIn={IsSignedIn}
+            isSignedIn={isSignedIn}
             onRouteChange={onRouteChange}
           />
         </div>
-        {RouteStatus === "home" ? (
+        {routeStatus === "home" ? (
           <>
             <div className="App__top"></div>
             <div className="App__center">
@@ -46,10 +50,14 @@ function App() {
               <ListOfCards />
             </div>
           </>
-        ) : RouteStatus === "signin" ? (
-          <SignIn onRouteChange={onRouteChange} />
         ) : (
-          <Register onRouteChange={onRouteChange} />
+          <>
+            {routeStatus === "signin" ? (
+              <SignIn onRouteChange={onRouteChange} />
+            ) : (
+              <Register onRouteChange={onRouteChange} />
+            )}
+          </>
         )}
       </MovieProvider>
     </div>
