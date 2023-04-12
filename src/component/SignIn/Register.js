@@ -17,7 +17,7 @@ function Register({ onRouteChange }) {
         throw new Error("Please fill in all fields");
       }
 
-      fetch("https://moviedb-rlml.onrender.com/register", {
+      fetch("https://moviedb-rlml.onrender.com", {
         method: "post",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

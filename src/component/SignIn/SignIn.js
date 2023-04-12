@@ -11,7 +11,7 @@ function SignIn({ onRouteChange }) {
   function onSubmitSignIn(event) {
     event.preventDefault();
 
-    fetch("https://moviedb-rlml.onrender.com/signin", {
+    fetch("https://moviedb-rlml.onrender.com", {
       method: "post",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
