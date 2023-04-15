@@ -26,11 +26,8 @@ function SignIn({ onRouteChange }) {
         return response.json();
       })
       .then((data) => {
-        // Update profile state with user data
         const { name, email } = data;
         loadUser({ name, email });
-
-        // Change route to home
         onRouteChange("home");
       })
       .catch((error) => {
