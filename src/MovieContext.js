@@ -29,7 +29,7 @@ export function MovieProvider({ children }) {
 
   const addToRotation = (list) => {
     setMovieList(list);
-    console.log("rotation in state", movieList);
+    // console.log("rotation in state", movieList);
   };
   return (
     <MovieContext.Provider
