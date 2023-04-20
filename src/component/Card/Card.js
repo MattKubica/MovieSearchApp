@@ -2,6 +2,7 @@ import React from "react";
 import "../Card/Card.css";
 import "../FaceRecognition/FaceRecognition";
 import YouTubeIcon from "@mui/icons-material/YouTube";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { Link } from "@mui/material";
 
 function Card({ movie }) {
@@ -19,6 +20,17 @@ function Card({ movie }) {
       <div className="card__info__bot">
         <Link
           target="_blank"
+          href={`https://www.amazon.com/s?k=${movie.title}&i=instant-video`}>
+          <ShoppingCartIcon
+            style={{
+              color: "darkorange",
+              cursor: "pointer",
+              marginRight: 20,
+            }}
+          />
+        </Link>
+        <Link
+          target="_blank"
           href={`https://www.youtube.com/results?search_query=${movie.title}+triler`}>
           <YouTubeIcon style={{ color: "red", cursor: "pointer" }} />
         </Link>
@@ -28,4 +40,3 @@ function Card({ movie }) {
 }
 
 export default Card;
-//`https://www.youtube.com/results?search_query=${movie.title}+triler`

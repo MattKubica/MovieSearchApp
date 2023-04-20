@@ -34,7 +34,7 @@ function Register({ onRouteChange }) {
         })
         .then((user) => {
           if (user) {
-            onRouteChange("home");
+            onRouteChange("signin");
           }
         })
         .catch((error) => setError(error.message));
