@@ -1,7 +1,7 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import "../SignIn/SignIn.css";
 import MovieContext from "../../MovieContext";
-import Spinner from "react-bootstrap/Spinner";
+import LoadingScreen from "../LoadingScreen";
 
 function SignIn({ onRouteChange }) {
   const [signInEmail, setSignInEmail] = useState("");
@@ -13,7 +13,6 @@ function SignIn({ onRouteChange }) {
   function onSubmitSignIn(event) {
     event.preventDefault();
     setLoading(true);
-
     fetch("https://moviedb-rlml.onrender.com/signin", {
       method: "post",
       headers: { "Content-Type": "application/json" },
@@ -42,9 +41,10 @@ function SignIn({ onRouteChange }) {
       });
   }
 
-  return (
+  return loading ? (
+    <LoadingScreen />
+  ) : (
     <div className="login-box">
-      {loading && <Spinner animation="border" />}
       <h2>Login</h2>
       <form onSubmit={onSubmitSignIn}>
         <div className="user-box">
