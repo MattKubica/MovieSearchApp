@@ -1,12 +1,14 @@
 import React, { useState, useContext, useCallback } from "react";
 import "../SignIn/SignIn.css";
 import MovieContext from "../../MovieContext";
+import Spinner from "react-bootstrap/Spinner";
 
 function Register({ onRouteChange }) {
   const [registerUsername, setRegisterUsername] = useState("");
   const [registerPassword, setRegisterPassword] = useState("");
   const [registerEmailAddress, setRegisterEmailAddress] = useState("");
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
   const { loadUser } = useContext(MovieContext);
 
   const onRegisterSubmit = useCallback(
@@ -16,6 +18,8 @@ function Register({ onRouteChange }) {
       if (!registerUsername || !registerPassword || !registerEmailAddress) {
         throw new Error("Please fill in all fields");
       }
+
+      setLoading(true);
 
       fetch("https://moviedb-rlml.onrender.com/register", {
         method: "post",
@@ -37,7 +41,8 @@ function Register({ onRouteChange }) {
             onRouteChange("signin");
           }
         })
-        .catch((error) => setError(error.message));
+        .catch((error) => setError(error.message))
+        .finally(() => setLoading(false));
     },
     [
       registerUsername,
@@ -62,6 +67,7 @@ function Register({ onRouteChange }) {
 
   return (
     <div className="login-box">
+      {loading && <Spinner animation="border" />}
       <h2>Register</h2>
       <form onSubmit={onRegisterSubmit}>
         <div className="user-box">
@@ -99,4 +105,5 @@ function Register({ onRouteChange }) {
     </div>
   );
 }
+
 export default Register;
