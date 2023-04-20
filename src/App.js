@@ -13,7 +13,6 @@ import Navigation from "./component/FaceRecognition/Navigation";
 function App() {
   const [routeStatus, setRouteStatus] = useState("signin");
   const [isSignedIn, setIsSignedIn] = useState(false);
-
   useEffect(() => {
     if (routeStatus === "home") {
       setIsSignedIn(true);
