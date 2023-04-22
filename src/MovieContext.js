@@ -4,6 +4,7 @@ const MovieContext = createContext();
 
 export function MovieProvider({ children }) {
   const [movieList, setMovieList] = useState([]);
+  const [searchLoading, setSearchLoading] = useState(false);
   const [profile, setProfile] = useState({
     user: {
       id: "",
@@ -24,16 +25,24 @@ export function MovieProvider({ children }) {
       joined: data.joined,
     };
     setProfile({ user });
-    //console.log("current user in Context is :" + user.name);
   };
 
   const addToRotation = (list) => {
     setMovieList(list);
-    // console.log("rotation in state", movieList);
+  };
+  const currentLoadingStatus = (loading) => {
+    setSearchLoading(loading);
   };
   return (
     <MovieContext.Provider
-      value={{ movieList, addToRotation, profile, loadUser }}>
+      value={{
+        movieList,
+        addToRotation,
+        profile,
+        loadUser,
+        currentLoadingStatus,
+        searchLoading,
+      }}>
       {children}
     </MovieContext.Provider>
   );

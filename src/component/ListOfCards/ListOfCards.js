@@ -4,12 +4,16 @@ import "../ListOfCards/ListOfCards.css";
 import MovieContext from "../../MovieContext";
 import { useContext } from "react";
 import { v4 as uuidv4 } from "uuid";
+import LoadingScreen from "../LoadingScreen";
 
 const ListOfCards = () => {
-  const { movieList } = useContext(MovieContext);
-
+  const { movieList, searchLoading } = useContext(MovieContext);
   if (movieList.length === 0) {
-    return (
+    return searchLoading ? (
+      <div className="loading__screen__div">
+        <LoadingScreen />
+      </div>
+    ) : (
       <div className="ListOfCards">
         <Card
           key={uuidv4()}
@@ -22,7 +26,11 @@ const ListOfCards = () => {
       </div>
     );
   } else {
-    return (
+    return searchLoading ? (
+      <div className="loading__screen__div">
+        <LoadingScreen />
+      </div>
+    ) : (
       <div className="ListOfCards">
         {movieList.map((movie) => {
           if (movie.i !== undefined) {
@@ -37,7 +45,11 @@ const ListOfCards = () => {
               />
             );
           } else {
-            return (
+            return searchLoading ? (
+              <div className="loading__screen__div">
+                <LoadingScreen />
+              </div>
+            ) : (
               <Card
                 key={uuidv4()}
                 movie={{

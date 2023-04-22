@@ -1,10 +1,12 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState, useContext, useRef } from "react";
 import "./FaceRecognition.css";
 import MovieContext from "../../MovieContext";
 
 function FaceRecognition() {
   const [InputValue, setInputValue] = useState("");
-  const { addToRotation, profile } = useContext(MovieContext);
+  const { addToRotation, profile, currentLoadingStatus, searchLoading } =
+    useContext(MovieContext);
+  const inputRef = useRef(null);
   let NAME_OF_MOVIE = InputValue;
   const options = {
     method: "GET",
@@ -15,6 +17,9 @@ function FaceRecognition() {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
+    currentLoadingStatus(true);
+    inputRef.current.value = "";
+    inputRef.current.focus();
     fetch(
       "https://online-movie-database.p.rapidapi.com/auto-complete?q=" +
         NAME_OF_MOVIE,
@@ -25,10 +30,12 @@ function FaceRecognition() {
         const list = data.d;
         addToRotation(list);
       })
-      .catch((err) => console.error(err));
-    console.log("submited", { NAME_OF_MOVIE });
-    e.target.reset();
-    NAME_OF_MOVIE = "";
+      .catch((err) => console.error(err))
+      .finally(() => {
+        inputRef.current.value = "";
+        inputRef.current.focus();
+        currentLoadingStatus(false);
+      });
   };
   return (
     <div className="faceRecognition">
@@ -42,6 +49,7 @@ function FaceRecognition() {
               className="faceRecognition__input"
               type="text"
               onChange={(e) => setInputValue(e.target.value)}
+              ref={inputRef}
             />
             <button
               className="faceRecognition__button"
