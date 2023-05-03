@@ -7,7 +7,7 @@ function SignIn({ onRouteChange }) {
   const [signInEmail, setSignInEmail] = useState("");
   const [signInPassword, setSignInPassword] = useState("");
   const [error, setError] = useState("");
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const { loadUser } = useContext(MovieContext);
 
   function onSubmitSignIn(event) {
