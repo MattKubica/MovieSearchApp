@@ -36,11 +36,10 @@ function Register({ onRouteChange }) {
         .then((user) => {
           if (user) {
             onRouteChange("signin");
-            setLoading(false);
           }
         })
-        .catch((error) => setError(error.message));
-      setLoading(false);
+        .catch((error) => setError(error.message))
+        .finally(() => setLoading(false));
     },
     [
       registerUsername,
@@ -63,45 +62,54 @@ function Register({ onRouteChange }) {
     setRegisterEmailAddress(e.target.value);
   };
 
-  return loading ? (
-    <LoadingScreen />
-  ) : (
-    <div className="login-box">
-      <h2>Register</h2>
-      <form onSubmit={onRegisterSubmit}>
-        <div className="user-box">
-          <input
-            onChange={onUsernameChange}
-            type="text"
-            id="register-username"
-            required
-          />
-          <label htmlFor="register-username">Username</label>
+  return (
+    <div className="login-page">
+      {loading ? (
+        <LoadingScreen />
+      ) : (
+        <div className="login-box">
+          <h2>Register</h2>
+          <form onSubmit={onRegisterSubmit}>
+            <div className="user-box">
+              <input
+                onChange={onUsernameChange}
+                type="text"
+                id="register-username"
+                required
+              />
+              <label htmlFor="register-username">Username</label>
+            </div>
+            <div className="user-box">
+              <input
+                onChange={onEmailAddressChange}
+                type="email"
+                id="register-email-address"
+                required
+              />
+              <label htmlFor="register-email-address">E-mail</label>
+            </div>
+            <div className="user-box">
+              <input
+                onChange={onPasswordChange}
+                type="password"
+                id="register-password"
+                required
+              />
+              <label htmlFor="register-password">Password</label>
+            </div>
+            <div>
+              <button type="submit">Register</button>
+            </div>
+            {error && <p className="heroic-text">{error}</p>}
+          </form>
+          <div className="login-link-container">
+            <p className="heroic-text">Already have an account?</p>
+            <button onClick={() => onRouteChange("signin")}>Sign In</button>
+          </div>
         </div>
-        <div className="user-box">
-          <input
-            onChange={onEmailAddressChange}
-            type="email"
-            id="register-email-address"
-            required
-          />
-          <label htmlFor="register-email-address">E-mail</label>
-        </div>
-        <div className="user-box">
-          <input
-            onChange={onPasswordChange}
-            type="password"
-            id="register-password"
-            required
-          />
-          <label htmlFor="register-password">Password</label>
-        </div>
-        <div>
-          <button type="submit">Register</button>
-        </div>
-        {error && <p className="heroic-text">{error}</p>}
-      </form>
+      )}
     </div>
   );
 }
+
 export default Register;
